@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { ArticleDetailComponent } from './article-detail/article-detail.component';
 import { ArticleListComponent } from './article-list/article-list.component';
 import { ArticleListItemComponent } from './article-list-item/article-list-item.component';
+import { ArticleRoutingModule } from './article-routing.module';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { ArticleListItemComponent } from './article-list-item/article-list-item.
     ArticleListItemComponent, 
     ArticleDetailComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    ArticleRoutingModule
   ]
 })
 export class ArticleModule { }
