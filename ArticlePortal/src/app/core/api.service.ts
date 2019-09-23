@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Article } from './article.model';
 
 @Injectable()
 export class ApiService {
@@ -16,7 +17,7 @@ export class ApiService {
     };
 
     getUsers(): Observable<User[]> {
-        const url = 'https://gorest.co.in/public-api/users';
+        const url = 'https://gorest.co.in/public-api/users?page=70';
         return this.http.get<any>(url, this.httpOptions)
             .pipe(
                 map(
@@ -26,6 +27,19 @@ export class ApiService {
                     }
                 )
             );
+    }
+
+    getArticlesByAuthor(id: number): Observable<Article[]> {
+        const url = 'https://gorest.co.in/public-api/posts?user_id=' + id;
+        return this.http.get<any>(url, this.httpOptions)
+            .pipe(
+                map(
+                    response => {
+                        const articleList = [...response.result];
+                        return articleList as Article[];
+                    }
+                )
+            )
     }
 
 }
