@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import * as actions from './state.action';
 import { StateModel } from './state.model';
 
-@Injectable( { providedIn: 'root' } )
+@Injectable({ providedIn: 'root' })
 export class StateDispatchersService {
 
   constructor(
@@ -13,5 +13,9 @@ export class StateDispatchersService {
 
   loadUsers() {
     this.store.dispatch(actions.loadUsers());
+  }
+
+  loadArticles(id: number) {
+    this.store.dispatch(actions.loadArticlesByUser({ id }));
   }
 }
