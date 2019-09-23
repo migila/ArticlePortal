@@ -9,12 +9,15 @@ import { ArticleRoutingModule } from './article-routing.module';
 
 @NgModule({
   declarations: [
-    ArticleListComponent, 
-    ArticleListItemComponent, 
+    ArticleListComponent,
+    ArticleListItemComponent,
     ArticleDetailComponent],
   imports: [
     CommonModule,
     ArticleRoutingModule
+  ],
+  exports: [
+    ArticleListComponent
   ]
 })
 export class ArticleModule { }

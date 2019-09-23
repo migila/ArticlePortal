@@ -1,12 +1,13 @@
-import { Injectable } from '@angular/core';
-import { User } from './user.model';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
+import { User } from './user.model';
 import { Article } from './article.model';
 
-@Injectable()
+@Injectable( { providedIn: 'root' } )
 export class ApiService {
 
     constructor(private http: HttpClient
