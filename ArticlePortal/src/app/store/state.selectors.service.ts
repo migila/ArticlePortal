@@ -1,31 +1,36 @@
-import { createSelector, Store } from '@ngrx/store';
-
-import { StateModel } from './state.model';
-import { Observable } from 'rxjs';
-import { User } from '../core/user.model';
 import { Injectable } from '@angular/core';
+
+import { createSelector, Store, createFeatureSelector } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
 import { Article } from '../core/article.model';
+import { StateModel } from './state.model';
+import { User } from '../core/user.model';
 
-export const users = (state: StateModel) => state.users;
-export const articles = (state: StateModel) => state.articles;
 
+const selectCommonFeature = createFeatureSelector<StateModel>('state');
 
-export const selectAllUsers = createSelector(
-  users, (u) => u
+const selectAllUsers = createSelector(
+  selectCommonFeature,
+  state => state.users
 );
 
+const selectAllArticles = createSelector(
+  selectCommonFeature,
+  state => state.articles
+);
 
-@Injectable()
-export class SelectorsService {
+@Injectable( { providedIn: 'root' } )
+export class StateSelectorsService {
 
   constructor(private store: Store<StateModel>) { }
 
-  selectAllUsers(): Observable<User[]> {
-    return this.store.select(users);
+  get selectAllUsers$(): Observable<User[]> {
+    return this.store.select(selectAllUsers);
   }
 
-  selectAllArticles(): Observable<Article[]> {
-    return this.store.select(articles);
+  get selectAllArticles$(): Observable<Article[]> {
+    return this.store.select(selectAllArticles);
   }
 
 }

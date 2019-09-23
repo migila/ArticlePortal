@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/app/core/api.service';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/core/user.model';
+import { StateDispatchersService } from 'src/app/store/state.dispatchers.service';
+import { StateSelectorsService } from 'src/app/store/state.selectors.service';
 
 @Component({
   selector: 'app-article-list',
@@ -11,19 +12,14 @@ import { User } from 'src/app/core/user.model';
 export class ArticleListComponent implements OnInit {
 
   constructor(
-    private apiService: ApiService
+    private stateDispatcher: StateDispatchersService,
+    public stateSelector: StateSelectorsService
   ) { }
 
-    users: User[];
+    users$: Observable<User[]>;
 
   ngOnInit() {
-    this.getUsers();
-  }
-
-  getUsers() {
-    this.apiService.getUsers().subscribe(
-      users => this.users = users
-    );
+    this.stateDispatcher.loadUsers();
   }
 
 }

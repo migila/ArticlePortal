@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { StateModel } from './state.model';
-import * as actions from './state.action';
 
-@Injectable()
-export class CompanyDispatchersService {
+import * as actions from './state.action';
+import { StateModel } from './state.model';
+
+@Injectable( { providedIn: 'root' } )
+export class StateDispatchersService {
 
   constructor(
     private store: Store<StateModel>
