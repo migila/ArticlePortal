@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/core/user.service';
+import { ApiService } from 'src/app/core/api.service';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/core/user.model';
 
@@ -11,7 +11,7 @@ import { User } from 'src/app/core/user.model';
 export class ArticleListComponent implements OnInit {
 
   constructor(
-    private userService: UserService
+    private apiService: ApiService
   ) { }
 
     users: User[];
@@ -21,7 +21,7 @@ export class ArticleListComponent implements OnInit {
   }
 
   getUsers() {
-    this.userService.getUsers().subscribe(
+    this.apiService.getUsers().subscribe(
       users => this.users = users
     );
   }

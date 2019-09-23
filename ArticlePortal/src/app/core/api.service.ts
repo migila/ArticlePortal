@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
-export class UserService {
+export class ApiService {
 
     constructor(private http: HttpClient
     ) {}
