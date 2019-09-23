@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { ApiService } from './api.service';
 
 @NgModule({
     declarations: [
@@ -7,7 +6,6 @@ import { ApiService } from './api.service';
     imports: [
     ],
     providers: [
-      ApiService
       ],
   })
   export class CoreModule { }
