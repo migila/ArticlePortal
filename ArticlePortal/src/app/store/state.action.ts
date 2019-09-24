@@ -4,7 +4,11 @@ import { Article } from '../core/article.model';
 
 export const loadUsers = createAction(
   '[Load users] Load users from API'
-  );
+);
+
+export const loadUsersStart = createAction(
+  '[Load users start] Load users from API start'
+);
 
 export const loadUsersSuccess = createAction(
   '[Load users success] Load users from API success',
@@ -17,7 +21,7 @@ export const loadUsersFail = createAction(
 );
 
 export const loadArticlesByUser = createAction(
-    '[Load articles] Load articles by user id.'
+  '[Load articles] Load articles by user id.'
 );
 
 export const loadArticlesSuccess = createAction(

@@ -15,6 +15,12 @@ export class StateEffects {
   }
 
   @Effect()
+  showLoadingProgress: Observable<Action> = this.actions$.pipe(
+    ofType(actions.loadUsers),
+    map(() => actions.loadUsersStart())
+  );
+
+  @Effect()
   loadUsers$: Observable<Action> = this.actions$.pipe(
     ofType(actions.loadUsers),
     switchMap(() => this.apiService.getUsers().pipe(
