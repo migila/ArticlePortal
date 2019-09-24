@@ -1,13 +1,13 @@
-<div *ngFor="let user of stateSelector.selectAllUsers$ | async">
+<!-- <div *ngFor="let user of stateSelector.selectAllUsers$ | async">
     <p>{{user.first_name}} {{user.last_name}}</p>
 </div>
 <div *ngFor="let article of articles">
     <p>{{article.title}}</p>
-</div>
+</div> -->
 
 <ng-container *ngFor="let user of stateSelector.selectAllUsers$ | async">
     <h1>{{ user.first_name }} {{user.last_name}}</h1>
-    <app-article-list-item 
+    <app-article-list-item
         [user]="user.id">
     </app-article-list-item>
 </ng-container>

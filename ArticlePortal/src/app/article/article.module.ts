@@ -5,19 +5,21 @@ import { ArticleDetailComponent } from './article-detail/article-detail.componen
 import { ArticleListComponent } from './article-list/article-list.component';
 import { ArticleListItemComponent } from './article-list-item/article-list-item.component';
 import { ArticleRoutingModule } from './article-routing.module';
+import { ArticleContainerComponent } from './article-container/article-container.component';
 
 
 @NgModule({
   declarations: [
     ArticleListComponent,
     ArticleListItemComponent,
-    ArticleDetailComponent],
+    ArticleDetailComponent,
+    ArticleContainerComponent],
   imports: [
     CommonModule,
     ArticleRoutingModule
   ],
   exports: [
-    ArticleListComponent
+    ArticleContainerComponent
   ]
 })
 export class ArticleModule { }

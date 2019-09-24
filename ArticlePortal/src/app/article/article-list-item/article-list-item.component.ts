@@ -6,6 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./article-list-item.component.scss']
 })
 export class ArticleListItemComponent implements OnInit {
+@Input() user: number;
 
   constructor() { }
 
