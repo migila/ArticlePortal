@@ -17,8 +17,7 @@ export const loadUsersFail = createAction(
 );
 
 export const loadArticlesByUser = createAction(
-    '[Load articles] Load articles by user id.',
-    props<{ id: number }>()
+    '[Load articles] Load articles by user id.'
 );
 
 export const loadArticlesSuccess = createAction(

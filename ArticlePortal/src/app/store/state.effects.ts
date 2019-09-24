@@ -5,7 +5,6 @@ import { Action } from '@ngrx/store';
 import * as actions from './state.action';
 import { switchMap, map, catchError, mergeMap } from 'rxjs/operators';
 import { ApiService } from '../core/api.service';
-import { Article } from '../core/article.model';
 
 @Injectable()
 export class StateEffects {
@@ -25,13 +24,15 @@ export class StateEffects {
   );
 
   @Effect()
-  loadArticles$: Observable<Action> = this.actions$.pipe(
-    ofType(actions.loadArticlesByUser),
-    mergeMap(action => this.apiService.getArticlesByAuthor(action.id).pipe(
-      map(articles => actions.loadArticlesSuccess({ articles })),
-      catchError(err => of(actions.loadArticlesFail({ error: JSON.stringify(err) })))
-    ))
+  loadUserArticles$: Observable<Action> = this.actions$.pipe(
+    ofType(actions.loadUsersSuccess),
+    map(action => action.users.map(user => user.id).slice(0, 5)),
+    switchMap((usersIds) => {
+      return this.apiService.getArticlesByAuthors(usersIds).pipe(
+        map(articles => actions.loadArticlesSuccess( { articles } )),
+        catchError(err => of(actions.loadArticlesFail( { error: JSON.stringify(err) })))
+      );
+    })
   );
-
 
 }

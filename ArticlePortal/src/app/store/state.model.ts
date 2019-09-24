@@ -7,6 +7,6 @@ export interface StateModel {
 }
 
 export const initState: StateModel = {
-    users: null,
-    articles: null
+    users: [],
+    articles: []
 };

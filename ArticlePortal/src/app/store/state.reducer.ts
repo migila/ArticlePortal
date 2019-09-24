@@ -7,7 +7,7 @@ import { StateModel, initState } from './state.model';
 const stateReducerConst = createReducer(
     initState,
     on(loadUsersSuccess, (state , payload) => ({ ...state, users: payload.users })),
-    on(loadArticlesSuccess, (state, payload) => ({ ...state, articles: {...state.articles, ...payload.articles}}))
+    on(loadArticlesSuccess, (state, payload) => ({ ...state, articles: [...state.articles, ...payload.articles]}))
   );
 
 export function stateReducer(state: StateModel | undefined, action: Action) {

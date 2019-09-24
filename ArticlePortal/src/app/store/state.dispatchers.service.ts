@@ -15,7 +15,4 @@ export class StateDispatchersService {
     this.store.dispatch(actions.loadUsers());
   }
 
-  loadArticles(id: number) {
-    this.store.dispatch(actions.loadArticlesByUser({ id }));
-  }
 }
