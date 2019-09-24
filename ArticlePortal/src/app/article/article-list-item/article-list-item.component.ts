@@ -26,4 +26,8 @@ export class ArticleListItemComponent implements OnInit {
     this.stateSelector.selectArticlesByUser$(id).subscribe(
       x => this.newArticles = x);
   }
+
+  showDetail(article: Article) {
+    console.log(article);
+  }
 }

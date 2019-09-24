@@ -1,0 +1,12 @@
+.nav {
+  grid-area: nav;
+}
+
+.detailx {
+  grid-area: detail;
+}
+
+.container {
+  display: grid;
+  grid-template-areas: 'nav detail detail detail'
+}

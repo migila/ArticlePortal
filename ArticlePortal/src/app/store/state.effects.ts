@@ -24,6 +24,7 @@ export class StateEffects {
   loadUsers$: Observable<Action> = this.actions$.pipe(
     ofType(actions.loadUsers),
     switchMap(() => this.apiService.getUsers().pipe(
+      map(users => users.slice(0, 5)),
       map(users => actions.loadUsersSuccess({ users })),
       catchError(err => of(actions.loadUsersFail({ error: JSON.stringify(err) })))
     ))
