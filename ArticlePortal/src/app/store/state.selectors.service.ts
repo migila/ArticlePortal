@@ -20,6 +20,21 @@ const selectAllArticles = createSelector(
   state => state.articles
 );
 
+const selectUsersError = createSelector(
+  selectCommonFeature,
+  state => state.usersError
+);
+
+const selectArticlesError = createSelector(
+  selectCommonFeature,
+  state => state.articlesError
+);
+
+const selectUsersLoadingProgress = createSelector(
+  selectCommonFeature,
+  state => state.isLoading
+);
+
 const selectArticlesByUserId = (id: number) => createSelector(
   selectAllArticles,
   (articles: Article[]) => {
@@ -42,6 +57,18 @@ export class StateSelectorsService {
 
   get selectAllArticles$(): Observable<Article[]> {
     return this.store.select(selectAllArticles);
+  }
+
+  get selectUsersError$(): Observable<string> {
+    return this.store.select(selectUsersError);
+  }
+
+  get selectArticlesError$(): Observable<string> {
+    return this.store.select(selectArticlesError);
+  }
+
+  get selectUsersLoadingProgress$(): Observable<boolean> {
+    return this.store.select(selectUsersLoadingProgress);
   }
 
   selectArticlesByUser$(id: number): Observable<Article[]> {

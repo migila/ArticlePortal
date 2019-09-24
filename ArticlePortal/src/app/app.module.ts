@@ -11,7 +11,7 @@ import { SharedModule } from './shared/shared.module';
 import { StoreModule } from '@ngrx/store';
 import { stateReducer } from './store/state.reducer';
 import { environment } from '../environments/environment';
-import {  HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { StateEffects } from './store/state.effects';
 
