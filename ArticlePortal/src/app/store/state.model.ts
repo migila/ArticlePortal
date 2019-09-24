@@ -7,6 +7,8 @@ export interface StateModel {
     isLoading: boolean;
     articles: Article[];
     articlesError: string;
+    isLoadingArticles: boolean;
+    currentArticle: Article | null;
 }
 
 export const initState: StateModel = {
@@ -15,4 +17,6 @@ export const initState: StateModel = {
     isLoading: false,
     articles: [],
     articlesError: '',
+    isLoadingArticles: false,
+    currentArticle: null
 };

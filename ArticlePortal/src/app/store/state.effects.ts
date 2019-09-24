@@ -3,14 +3,16 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
 import { Action } from '@ngrx/store';
 import * as actions from './state.action';
-import { switchMap, map, catchError, mergeMap } from 'rxjs/operators';
+import { switchMap, map, catchError, mergeMap, tap } from 'rxjs/operators';
 import { ApiService } from '../core/api.service';
+import { StateSelectorsService } from './state.selectors.service';
 
 @Injectable()
 export class StateEffects {
   constructor(
     private actions$: Actions,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private stateSelectorService: StateSelectorsService
   ) {
   }
 
@@ -38,6 +40,16 @@ export class StateEffects {
       return this.apiService.getArticlesByAuthors(usersIds).pipe(
         map(articles => actions.loadArticlesSuccess( { articles } )),
         catchError(err => of(actions.loadArticlesFail( { error: JSON.stringify(err) })))
+      );
+    })
+  );
+
+  @Effect()
+  setCurrentArticle$: Observable<Action> = this.actions$.pipe(
+    ofType(actions.setCurrentArticle),
+    switchMap(id => {
+      return this.stateSelectorService.selectArticleById$(id.articleId).pipe(
+        map((currentArticle) => actions.setCurrentArticleSuccess( { currentArticle } ))
       );
     })
   );

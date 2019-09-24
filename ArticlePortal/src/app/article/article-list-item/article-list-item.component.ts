@@ -3,6 +3,7 @@ import { Subject } from 'rxjs';
 import { Article } from 'src/app/core/article.model';
 import { StateSelectorsService } from 'src/app/store/state.selectors.service';
 import { Router } from '@angular/router';
+import { StateDispatchersService } from 'src/app/store/state.dispatchers.service';
 
 @Component({
   selector: 'app-article-list-item',
@@ -17,6 +18,7 @@ export class ArticleListItemComponent implements OnInit {
 
   constructor(
     public stateSelector: StateSelectorsService,
+    private stateDispatcher: StateDispatchersService,
     private router: Router
   ) { }
 
@@ -30,7 +32,7 @@ export class ArticleListItemComponent implements OnInit {
   }
 
   showDetail(article: Article) {
-    console.log(article);
+    this.stateDispatcher.setCurrentArticle(article.id);
     this.router.navigate(['articles/detail/' + article.id]);
   }
 }

@@ -35,6 +35,11 @@ const selectUsersLoadingProgress = createSelector(
   state => state.isLoading
 );
 
+const selectCurrentArticle = createSelector(
+  selectCommonFeature,
+  state => state.currentArticle
+);
+
 const selectArticlesByUserId = (id: number) => createSelector(
   selectAllArticles,
   (articles: Article[]) => {
@@ -96,6 +101,10 @@ export class StateSelectorsService {
 
   selectArticleById$(id: number): Observable<Article | null> {
     return this.store.pipe(select(selectArticleById(id)));
+   }
+
+   get selectCurrentArticle$(): Observable<Article> {
+     return this.store.select(selectCurrentArticle);
    }
 
 }

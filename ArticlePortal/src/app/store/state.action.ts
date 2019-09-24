@@ -33,3 +33,13 @@ export const loadArticlesFail = createAction(
   '[Load articles fail] Load articles from API fail',
   props<{ error: any }>()
 );
+
+export const setCurrentArticle = createAction(
+  '[Set current article] Set current article',
+  props<{ articleId: number }>()
+);
+
+export const setCurrentArticleSuccess = createAction(
+  '[Set current article success] Set current article success',
+  props<{ currentArticle: Article | null }>()
+);

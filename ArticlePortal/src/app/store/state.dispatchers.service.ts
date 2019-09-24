@@ -15,4 +15,8 @@ export class StateDispatchersService {
     this.store.dispatch(actions.loadUsers());
   }
 
+  setCurrentArticle(articleId: number) {
+    this.store.dispatch(actions.setCurrentArticle( { articleId }));
+  }
+
 }

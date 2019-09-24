@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { map } from 'rxjs/operators';
-import { Observable, of, merge } from 'rxjs';
+import { Observable, of, merge, forkJoin } from 'rxjs';
 
 import { User } from './user.model';
 import { Article } from './article.model';
@@ -18,7 +18,7 @@ export class ApiService {
   };
 
   getUsers(): Observable<User[]> {
-    const url = 'https://gorest.co.in/public-api/users?page=71';
+    const url = 'https://gorest.co.in/public-api/users?page=72';
     return this.http.get<any>(url, this.httpOptions)
       .pipe(
         map(

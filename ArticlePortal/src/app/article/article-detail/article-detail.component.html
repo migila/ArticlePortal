@@ -1,6 +1,7 @@
-<div *ngIf="article">
+<div *ngIf="article$ | async as article">
   <div>
-    {{article.id}}
+    <h1>{{ article.title }}</h1>
+    {{article.body}}
   </div>
 
 </div>
