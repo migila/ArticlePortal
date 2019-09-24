@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 
-import { createSelector, Store, createFeatureSelector } from '@ngrx/store';
-import { Observable, of } from 'rxjs';
+import { createSelector, Store, createFeatureSelector, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { Article } from '../core/article.model';
 import { StateModel } from './state.model';
 import { User } from '../core/user.model';
-import { map } from 'rxjs/operators';
 
 
 const selectCommonFeature = createFeatureSelector<StateModel>('state');
@@ -19,6 +18,17 @@ const selectAllUsers = createSelector(
 const selectAllArticles = createSelector(
   selectCommonFeature,
   state => state.articles
+);
+
+const selectArticlesByUserId = (id: number) => createSelector(
+  selectAllArticles,
+  (articles: Article[]) => {
+    if (articles) {
+      return articles.filter(a => a.user_id === id);
+    } else {
+      return [];
+    }
+  }
 );
 
 @Injectable({ providedIn: 'root' })
@@ -35,15 +45,7 @@ export class StateSelectorsService {
   }
 
   selectArticlesByUser$(id: number): Observable<Article[]> {
-    return this.selectAllArticles$.pipe(
-      map(articles => {
-          const newArticles: Article[] = articles.filter(
-            x => x.user_id === id
-          );
-          return newArticles;
-        }
-      )
-    );
+   return this.store.pipe(select(selectArticlesByUserId(id)));
   }
 
 }
