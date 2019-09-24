@@ -1,6 +1,7 @@
-<ng-container *ngFor="let user of stateSelector.selectAllUsers$ | async">
-    <h1>{{user.id}} {{ user.first_name }} {{user.last_name}}</h1>
-    <app-article-list-item
-        [userId]="user.id">
+<ng-container *ngFor="let user of stateSelector.selectAllUsers$ | async; let i = index">
+  <div *ngIf="i < 5">
+    <h1>{{ user.first_name }} {{user.last_name}}</h1>
+    <app-article-list-item [userId]="user.id">
     </app-article-list-item>
+  </div>
 </ng-container>

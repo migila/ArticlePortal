@@ -18,7 +18,7 @@ export class ApiService {
   };
 
   getUsers(): Observable<User[]> {
-    const url = 'https://gorest.co.in/public-api/users?page=70';
+    const url = 'https://gorest.co.in/public-api/users?page=71';
     return this.http.get<any>(url, this.httpOptions)
       .pipe(
         map(
