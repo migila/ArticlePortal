@@ -6,6 +6,7 @@ import { ArticleListComponent } from './article-list/article-list.component';
 import { ArticleListItemComponent } from './article-list-item/article-list-item.component';
 import { ArticleRoutingModule } from './article-routing.module';
 import { ArticleContainerComponent } from './article-container/article-container.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { ArticleContainerComponent } from './article-container/article-container
     ArticleContainerComponent],
   imports: [
     CommonModule,
+    SharedModule,
     ArticleRoutingModule
   ],
   exports: [

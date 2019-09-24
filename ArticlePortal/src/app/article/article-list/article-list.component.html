@@ -1,3 +1,7 @@
+<!-- <div style="background-color: red">
+  <p><ngb-progressbar type="success" [value]="25"></ngb-progressbar></p>
+</div> -->
+
 <ng-container *ngFor="let user of stateSelector.selectAllUsers$ | async">
     <h1>{{user.id}} {{ user.first_name }} {{user.last_name}}</h1>
     <app-article-list-item
