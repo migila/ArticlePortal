@@ -46,6 +46,25 @@ const selectArticlesByUserId = (id: number) => createSelector(
   }
 );
 
+const selectArticleById = (id: number) => createSelector(
+  selectAllArticles,
+  (articles: Article[]) => {
+    if (articles) {
+      console.log(articles);
+      console.log(id);
+
+      const art = articles.filter(a => a.id == id);
+      if (art && art.length > 0) {
+        return art[0];
+      } else {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  }
+);
+
 @Injectable({ providedIn: 'root' })
 export class StateSelectorsService {
 
@@ -74,5 +93,9 @@ export class StateSelectorsService {
   selectArticlesByUser$(id: number): Observable<Article[]> {
    return this.store.pipe(select(selectArticlesByUserId(id)));
   }
+
+  selectArticleById$(id: number): Observable<Article | null> {
+    return this.store.pipe(select(selectArticleById(id)));
+   }
 
 }

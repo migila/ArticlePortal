@@ -5,6 +5,10 @@ import { AppComponent } from './app.component';
 
 const routes: Routes = [
   {
+    path: 'articles',
+    loadChildren: () => import('./article/article.module').then(m => m.ArticleModule)
+  },
+  {
     path: '',
     redirectTo: '/articles',
     pathMatch: 'full'

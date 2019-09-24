@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Article } from 'src/app/core/article.model';
 import { StateSelectorsService } from 'src/app/store/state.selectors.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-article-list-item',
@@ -15,7 +16,8 @@ export class ArticleListItemComponent implements OnInit {
   newArticles: Article[];
 
   constructor(
-    public stateSelector: StateSelectorsService
+    public stateSelector: StateSelectorsService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -29,5 +31,6 @@ export class ArticleListItemComponent implements OnInit {
 
   showDetail(article: Article) {
     console.log(article);
+    this.router.navigate(['articles/detail/' + article.id]);
   }
 }
